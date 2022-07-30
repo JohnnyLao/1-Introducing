@@ -19,7 +19,7 @@ directories = {
 
 def people(user_num):
     for vocs in documents:
-        if user_num in vocs["number"]:
+        if user_num == vocs["number"]:
             print(vocs['name'])
 
 
@@ -27,9 +27,9 @@ def shelf(user_num):
     for id, numbers in enumerate(directories.values()):
         if user_num in numbers:
             print(id+1)
-        else:
-            print("Такого документа нет")
-            return
+    else:
+        print("Такого документа нет")
+        return
 
 
 def to_list():
@@ -44,11 +44,7 @@ def add(type, number, name, shelf_num):
         new_voc = {"type": type, "number": number, "name": name}
         documents.append(new_voc)
         print("Данные добавлены")
-        for key, lists in directories.items():
-            if key == shelf_num:
-                lists.append(number)
-                print(directories)
-                return
+        directories[shelf_num].append(number)
 
 
 while True:
