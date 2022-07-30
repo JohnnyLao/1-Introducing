@@ -9,6 +9,7 @@ directories = {
     '3': []
 }
 
+
 # p – people – команда, которая спросит номер документа и выведет имя человека, которому он принадлежит;
 # s – shelf – команда, которая спросит номер документа и выведет номер полки, на которой он находится;
 # Правильно обработайте ситуации, когда пользователь будет вводить несуществующий документ.
@@ -26,7 +27,7 @@ def people(user_num):
 def shelf(user_num):
     for id, numbers in enumerate(directories.values()):
         if user_num in numbers:
-            print(id+1)
+            print(id + 1)
     else:
         print("Такого документа нет")
         return
@@ -65,6 +66,3 @@ while True:
         add(type, number, name, shelf_num)
     else:
         print("Повторите попытку")
-
-
-
