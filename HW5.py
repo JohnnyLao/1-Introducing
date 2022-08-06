@@ -28,6 +28,7 @@ def shelf(user_num):
     for id, numbers in enumerate(directories.values()):
         if user_num in numbers:
             print(id + 1)
+            break
     else:
         print("Такого документа нет")
         return
