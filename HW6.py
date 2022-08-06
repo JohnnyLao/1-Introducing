@@ -13,7 +13,7 @@ class Student:
         for grades in self.grades.values():
             avg_grade = sum(grades) / len(grades)
             print(f'Средняя оценка за домашнее задание: {float(avg_grade)}')
-        print(f'Курсы в процессе обучения: {self.courses_in_progress}')
+        print(f'Курсы в процессе обучения: {" ".join(self.courses_in_progress)}')
 
     def rate_lecturer(self, lecturer, course, grade):
         if isinstance(lecturer,
@@ -64,6 +64,7 @@ class Reviewer(Mentor):
 
 
 # Блок для проверки
+
 student1 = Student("Антон", "Ильич", "м")
 student1.courses_in_progress += ["Python"]
 student1.courses_in_progress += ["Git"]
@@ -86,6 +87,6 @@ student2.rate_lecturer(lecturer1, "Python", 8)
 reviewer1.rate_hw(student1, "Python", 9)
 reviewer2.rate_hw(student1, "Python", 8)
 
-# print(lecturer1)
-# print(reviewer1)
+print(lecturer1)
+print(reviewer1)
 print(student1)
