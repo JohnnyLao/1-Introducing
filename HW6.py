@@ -8,12 +8,12 @@ class Student:
         self.grades = {}
 
     def __str__(self):
-        print(f'Имя: {self.name}')
-        print(f'Фамилия: {self.surname}')
         for grades in self.grades.values():
-            avg_grade = sum(grades) / len(grades)
-            print(f'Средняя оценка за домашнее задание: {float(avg_grade)}')
-        print(f'Курсы в процессе обучения: {" ".join(self.courses_in_progress)}')
+            result = f'Имя: {self.name} ' \
+                     f'Фамилия: {self.surname} ' \
+                     f'Средняя оценка за домашнее задание: {float(sum(grades) / len(grades))} ' \
+                     f'Курсы в процессе: {" ".join(self.courses_in_progress)}'
+            return result
 
     def rate_lecturer(self, lecturer, course, grade):
         if isinstance(lecturer,
@@ -39,12 +39,11 @@ class Lecturer(Mentor):
         self.grades = {}
 
     def __str__(self):
-        print(f'Имя: {self.name}')
-        print(f'Фамилия: {self.surname}')
         for grades in self.grades.values():
-            avg_grade = sum(grades) / len(grades)
-            print(f'Средняя оценка за лекцию: {float(avg_grade)}')
-            break
+            result = f'Имя: {self.name} ' \
+                     f'Фамилия: {self.surname} ' \
+                     f'Средняя оценка за лекцию: {float(sum(grades) / len(grades))}'
+            return result
 
 
 class Reviewer(Mentor):
@@ -59,9 +58,33 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
     def __str__(self):
-        print(f'Имя: {self.name}')
-        print(f'Фамилия: {self.surname}')
+        result = f'Имя: {self.name} ' \
+                 f'Фамилия: {self.surname}'
+        return result
 
+def calc_avg_homework(student_list, course):
+    for student in student_list:
+        if course in student.courses_in_progress:
+            for grades in student.grades.values():
+                avg = float(sum(grades) / len(grades))
+                print(avg)
+
+    else:
+        return "Ошибка"
+
+
+def calc_avg_rate(lecturer_list, course):
+    for lecturer in lecturer_list:
+        if course in lecturer.courses_attached:
+            for grades in lecturer.grades.values():
+                avg = float(sum(grades) / len(grades))
+                print(avg)
+    else:
+        return "Ошибка"
+
+
+students = []
+lecturers = []
 
 # Блок для проверки
 
@@ -70,23 +93,31 @@ student1.courses_in_progress += ["Python"]
 student1.courses_in_progress += ["Git"]
 student2 = Student("Егор", "Лошкарев", "м")
 student2.courses_in_progress += ["Python"]
+students.append(student1)
+students.append(student2)
 
 lecturer1 = Lecturer("Марина", "Калашникова")
 lecturer1.courses_attached += ["Python"]
 lecturer2 = Lecturer("Андрей", "Ильин")
 lecturer2.courses_attached += ["Python"]
+lecturers.append(lecturer1)
+lecturers.append(lecturer2)
 
 reviewer1 = Reviewer("Егор", "Морозов")
 reviewer1.courses_attached += ["Python"]
 reviewer2 = Reviewer("Владислав", "Котов")
 reviewer2.courses_attached += ["Python"]
 
-student1.rate_lecturer(lecturer1, "Python", 9)
+student1.rate_lecturer(lecturer1, "Python", 10)
 student2.rate_lecturer(lecturer1, "Python", 8)
 
-reviewer1.rate_hw(student1, "Python", 9)
-reviewer2.rate_hw(student1, "Python", 8)
+reviewer1.rate_hw(student1, "Python", 8)
+reviewer2.rate_hw(student1, "Python", 9)
+
 
 print(lecturer1)
 print(reviewer1)
 print(student1)
+
+calc_avg_homework(students, "Python")
+calc_avg_rate(lecturers, "Python")
