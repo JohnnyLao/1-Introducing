@@ -39,38 +39,22 @@ def get_shop_list_by_dishes(dishes, person_count):
 
 get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
 
-# Задание №2
+# Задание №3
+import os
 
-files_dict = {}
-files_text = {}
-with open("3.txt", encoding='utf-8') as f:
-    for quantity, line in enumerate(f):
-        files_dict['3.txt'] = quantity + 1
-        files_text['3.txt'] = line
-
-with open("2.txt", encoding='utf-8') as f:
-    for quantity, line in enumerate(f):
-        files_dict['2.txt'] = quantity + 1
-        files_text['2.txt'] = line
-with open("1.txt", encoding='utf-8') as f:
-    for quantity, line in enumerate(f):
-        files_dict['1.txt'] = quantity + 1
-        files_text['1.txt'] = line
-line = 0
-for lines in files_dict.values():
-    if lines > line:
-        line = lines
-    else:
-        pass
+dict_ = {}
+for filename in os.listdir():
+    if ".txt" in filename:
+        with open(os.path.join(filename), "r", encoding="utf-8") as f:
+            text = f.readlines()
+            len_ = len(text)
+            dict_[filename] = {"lines": len_, "text": text}
+# print(dict_)
 
 with open('4.txt', 'w', encoding='utf-8') as f:
-    for file, lines in files_dict.items():
-        if lines == line:
-            f.write(file.strip())
-            f.write("\n")
-            f.write(str(lines))
-            f.write("\n")
-            f.write(files_text[file])
+    for key, value in dict_.items():
+        f.write(f" {key}, \n")
+        f.write(f" {str(value['lines'])} \n")
+        f.write(f""" {str(" ".join(value['text']))} \n""")
 
 
-# print(files_dict)
