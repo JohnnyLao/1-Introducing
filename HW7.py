@@ -42,19 +42,24 @@ get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'
 # Задание №3
 import os
 
-dict_ = {}
+data = {}
+files_list = []
+
+
 for filename in os.listdir():
     if ".txt" in filename:
+        files_list.append(filename)
         with open(os.path.join(filename), "r", encoding="utf-8") as f:
             text = f.readlines()
             len_ = len(text)
-            dict_[filename] = {"lines": len_, "text": text}
-# print(dict_)
+            data[len_] = {"File": filename, "text": text}
+            data = dict(sorted(data.items()))
 
-with open('4.txt', 'w', encoding='utf-8') as f:
-    for key, value in dict_.items():
+
+with open('Result.txt', 'w', encoding='utf-8') as f:
+    for key, value in data.items():
         f.write(f" {key}, \n")
-        f.write(f" {str(value['lines'])} \n")
+        f.write(f" {str(value['File'])} \n")
         f.write(f""" {str(" ".join(value['text']))} \n""")
 
-
+print(data) # Check
