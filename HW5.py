@@ -46,7 +46,11 @@ def add(type, number, name, shelf_num):
         new_voc = {"type": type, "number": number, "name": name}
         documents.append(new_voc)
         print("Данные добавлены")
-        directories[shelf_num].append(number)
+        for key, value in directories.items():
+            if shelf_num == key:
+                value.append(number)
+
+        # directories[shelf_num].append(number)
 
 
 while True:

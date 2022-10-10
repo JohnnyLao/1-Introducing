@@ -9,10 +9,10 @@ class Student:
 
     def __str__(self):
         for grades in self.grades.values():
-            result = f'Имя: {self.name} ' \
-                     f'Фамилия: {self.surname} ' \
-                     f'Средняя оценка за домашнее задание: {float(sum(grades) / len(grades))} ' \
-                     f'Курсы в процессе: {" ".join(self.courses_in_progress)}'
+            result = f'Имя: {self.name} \n\
+Фамилия: {self.surname} \n\
+Средняя оценка за домашнее задание: {float(sum(grades) / len(grades))} \n\
+Курсы в процессе: {" ".join(self.courses_in_progress)}'
             return result
 
     def rate_lecturer(self, lecturer, course, grade):
@@ -40,9 +40,9 @@ class Lecturer(Mentor):
 
     def __str__(self):
         for grades in self.grades.values():
-            result = f'Имя: {self.name} ' \
-                     f'Фамилия: {self.surname} ' \
-                     f'Средняя оценка за лекцию: {float(sum(grades) / len(grades))}'
+            result = f'Имя: {self.name} \
+                     Фамилия: {self.surname}  \
+                     Средняя оценка за лекцию: {float(sum(grades) / len(grades))}'
             return result
 
 
@@ -115,8 +115,8 @@ reviewer1.rate_hw(student1, "Python", 8)
 reviewer2.rate_hw(student1, "Python", 9)
 
 
-print(lecturer1)
-print(reviewer1)
+# print(lecturer1)
+# print(reviewer1)
 print(student1)
 
 calc_avg_homework(students, "Python")
