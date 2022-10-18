@@ -37,7 +37,7 @@ class Yaloader:
                    'Authorization': f'OAuth {token}'}
         params = {"path": file_path, "overwrite": "true"}
         response = requests.get(upload_url, headers=headers, params=params).json()
-        href = response.get('href', '')
+        href = response.get('href')
         result = requests.put(href, data=open(path_to_file, 'rb'))
         if result.status_code == 201:
             print('Загрузка завершена')
@@ -53,4 +53,5 @@ if __name__ == '__main__':
     print(path_to_file)
     token = TOKEN
     uploader = Yaloader(token)
-    result = uploader.upload('text.txt')
+    uploader.upload('text.txt')
+
