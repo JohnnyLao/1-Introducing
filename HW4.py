@@ -35,6 +35,7 @@ ids = {'user1': [213, 213, 213, 15, 213],
        'user3': [213, 98, 98, 35]}
 for numbers in ids.values():
     numbers_list.extend(numbers)
+    print(numbers_list)
 
 a = set(numbers_list)
 print(a)
