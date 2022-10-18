@@ -1,3 +1,1 @@
-vk_token.txt
-yandex_token.txt
-.gitignore.txt
+NTuAnypMWynSpFux15sK
