@@ -63,4 +63,4 @@ with open('Result.txt', 'w', encoding='utf-8') as f:
         f.write(f" {str(value['File'])} \n")
         f.write(f""" {str(" ".join(value['text']))} \n""")
 
-print(data) # Check
+pprint(data) # Check
